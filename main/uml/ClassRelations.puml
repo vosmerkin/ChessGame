@@ -1,0 +1,24 @@
+@startuml
+
+class Game
+class Figure
+class Player
+class Board
+class Cell
+class GameEnding
+class Color
+
+Game -> Board :has
+Game -> Player : has 2
+Board -> Cell : has 24
+Board -down-> GameEnding : check
+Cell -down-> Figure: has
+Figure -down-> Color: has
+Player -right-> Figure: moves
+Player -> Color: has
+
+
+
+
+
+@enduml

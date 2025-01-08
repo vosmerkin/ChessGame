@@ -1,0 +1,112 @@
+@startuml
+top to bottom direction
+
+    enum Color {
+        WHITE
+        BLACK
+    }
+
+    enum GameEnding {
+        WHITE_WIN
+        BLACK_WIN
+        DRAW
+    }
+
+    class Cell {
+        - int x
+        - int y
+        - Figure figure
+    }
+
+    class Move {
+        - Cell from
+        - Cell to
+        - GameEnding endingProposition
+    }
+
+
+
+
+class Game {
+    - Player[] players
+    - Board board
+    - List<Move> movesHistory
+    --
+    + Game(Player whitePlayer, Player blackPlayer, int timeLimitSeconds)
+    + playGame(): void
+}
+
+class Board {
+    - Cell[][] cells
+    --
+    + Board()
+    # setToInitialPositions(): void
+    # validateMove(): boolean
+    # checkForGameEnding(): GameEnding
+}
+
+class Player {
+    - String name
+    - Color color
+    - int timeLimitSeconds
+    --
+    + makeMove(): Move
+    + getName(): String
+    + setName(String name): void
+    + getColor(): Color
+    + setColor(Color color): void
+    + getTimeLimitSeconds(): int
+    + setTimeLimitSeconds(int timeLimitSeconds): void
+}
+
+ abstract class Figure {
+        - Color color
+        - boolean isCaptured
+        --
+        + getAvailableMoves(Cell currentCell): List<Cell>
+    }
+
+    class Bishop {
+        --
+        + getAvailableMoves(Cell currentCell): List<Cell>
+    }
+
+    class King {
+        --
+        + getAvailableMoves(Cell currentCell): List<Cell>
+    }
+
+    class Queen {
+        --
+        + getAvailableMoves(Cell currentCell): List<Cell>
+    }
+
+    class Knight {
+        --
+        + getAvailableMoves(Cell currentCell): List<Cell>
+    }
+
+    class Rook {
+        --
+        + getAvailableMoves(Cell currentCell): List<Cell>
+    }
+
+    class Pawn {
+        --
+        + getAvailableMoves(Cell currentCell): List<Cell>
+    }
+
+
+Game "1" --> "1" Board
+Game "2" --> "1" Player
+Board "1" --> "*" Cell
+Player "1" --> "1" Color
+Player "1" --> "*" Move
+Figure <|-- Bishop
+Figure <|-- King
+Figure <|-- Queen
+Figure <|-- Knight
+Figure <|-- Rook
+Figure <|-- Pawn
+Figure "1" --> "*" Cell : "available moves"
+@enduml

@@ -1,0 +1,63 @@
+@startuml
+
+
+class "CRC: Game" as Game
+{
+** Responsibilities
+* Creates new game
+* Manage game flow
+* Track move history
+* Records game result to players' profiles
+----
+** Collaborators
+* Board
+* Player
+* Move
+}
+class "CRC: Board" as Board
+{
+** Responsibilities
+* Contains cells with figures
+* Initiates figures' starting position
+* Validates players' moves
+* Checks for game ending
+----
+** Collaborators
+* Cell
+* Figure
+* Move
+}
+class "CRC: Player" as Player
+{
+** Responsibilities
+* Contains info about user
+* Contains info about color of the figures
+* Keeps track of player's time limit
+* Makes player's move
+----
+** Collaborators
+* Move
+* Color
+}
+class "CRC: Figure" as Figure
+{
+** Responsibilities
+* Contains info about color of the figures
+* Contains info about possible figure's moves
+* Contains info if the figure is captured
+----
+** Collaborators
+* Move
+* Color
+}
+class "CRC: Cell" as Cell
+{
+** Responsibilities
+* Contains info about cell's coordinates
+* Contains Figure
+----
+** Collaborators
+* Figure
+}
+
+@enduml
